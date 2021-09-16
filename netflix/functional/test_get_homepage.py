@@ -2,6 +2,8 @@ import os
 import sys
 import requests
 
+from filibuster.assertions import was_fault_injected
+
 examples_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 sys.path.append(examples_path)
 
@@ -10,7 +12,7 @@ helper = helper.Helper("netflix")
 
 def test_functional_get_homepage():
     response = requests.get("{}/netflix/homepage/users/chris_rivers".format(helper.get_service_url("mobile-client")), timeout=helper.get_timeout("mobile-client"))
-    if not helper.fault_injected():
+    if not was_fault_injected():
         assert response.status_code == 200
         homepage = response.json()
         assert homepage["user-profile"] == USER_PROFILE

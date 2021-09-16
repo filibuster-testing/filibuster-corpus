@@ -8,11 +8,12 @@ import helper
 
 helper = helper.Helper("mailchimp")
 
+from filibuster.assertions import was_fault_injected
 
 def test_functional_get_url():
     response = requests.get("http://{}:{}/urls/prettyurl".format(helper.resolve_requests_host(
         'load-balancer'), helper.get_port('load-balancer')), timeout=helper.get_timeout('load-balancer'))
-    if not helper.fault_injected():
+    if not was_fault_injected():
         assert response.status_code == 200
         assert response.json() == {"result": "internalurl"}
     else:

@@ -1,5 +1,6 @@
 import sys, os
 import requests
+from filibuster.assertions import was_fault_injected
 
 examples_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 sys.path.append(examples_path)
@@ -9,7 +10,7 @@ helper = helper.Helper("expedia")
 
 def test_functional_get_reviews():
     response = requests.get("{}/review/hotels/hotel1".format(helper.get_service_url('api-gateway'), timeout=helper.get_timeout('api-gateway')))
-    if not helper.fault_injected():
+    if not was_fault_injected():
         assert response.status_code == 200
         assert response.json() == ML_RESPONSE
     else:

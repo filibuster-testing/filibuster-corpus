@@ -1,6 +1,7 @@
 import os
 import sys
 import requests
+from filibuster.assertions import was_fault_injected, was_fault_injected_on
 
 parent_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 sys.path.append(parent_path)
@@ -12,14 +13,14 @@ import helper
 helper = helper.Helper("audible")
 
 def only_stats_failure():
-    return (helper.fault_injected_on_flask_service('stats') and
-        not helper.fault_injected_on_flask_service('asset-metadata') and
-        not helper.fault_injected_on_flask_service('audio-assets'))
+    return (was_fault_injected_on('stats') and
+        not was_fault_injected_on('asset-metadata') and
+        not was_fault_injected_on('audio-assets'))
 
 def test_functional_get_audiobook():    
     response = requests.get("{}/users/user1/books/book2".format(helper.get_service_url("audible-app")), timeout=helper.get_timeout("audible-app"))
     # If only the stats service (non-critical) failed, 200 response OK.
-    if not helper.fault_injected() or only_stats_failure():
+    if not was_fault_injected() or only_stats_failure():
         assert response.status_code == 200
         assert response.content == RESPONSE_SUCCESS
     else:

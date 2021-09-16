@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: app-server
+  name: app-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: app-server
+  template:
+    metadata:
+      labels:
+        io.kompose.service: app-server
+    spec:
+      containers:
+        - image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/mailchimp:app-server
+          name: app-server
+          ports:
+            - containerPort: 5001
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred

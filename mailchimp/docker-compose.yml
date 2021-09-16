@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+    load-balancer:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/mailchimp:load-balancer
+        build: 
+            context: './services/load-balancer/'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5000:5000"
+    app-server:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/mailchimp:app-server
+        build: 
+            context: './services/app-server'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5001:5001"
+    requestmapper:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/mailchimp:requestmapper
+        build: 
+            context: './services/requestmapper'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5002:5002"
+    db-primary:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/mailchimp:db-primary
+        build: 
+            context: './services/db-primary'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5003:5003"
+    db-secondary:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/mailchimp:db-secondary
+        build: 
+            context: './services/db-secondary'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5004:5004"
+

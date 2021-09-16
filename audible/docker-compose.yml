@@ -1,0 +1,66 @@
+version: '3'
+
+services:
+    audible-app:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/audible:audible-app
+        build: 
+            context: './services/audible-app'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5000:5000"
+    content-delivery-engine:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/audible:content-delivery-engine
+        build: 
+            context: './services/content-delivery-engine'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5001:5001"
+    content-delivery-service:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/audible:content-delivery-service
+        build: 
+            context: './services/content-delivery-service'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5002:5002"
+    audible-download-service:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/audible:audible-download-service
+        build: 
+            context: './services/audible-download-service'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5003:5003"
+    ownership:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/audible:ownership
+        build: 
+            context: './services/ownership'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5004:5004"
+    activation:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/audible:activation
+        build: 
+            context: './services/activation'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5005:5005"
+    stats:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/audible:stats
+        build: 
+            context: './services/stats'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5006:5006"
+    asset-metadata:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/audible:asset-metadata
+        build: 
+            context: './services/asset-metadata'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5007:5007"
+    audio-assets:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/audible:audio-assets
+        build: 
+            context: './services/audio-assets'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5008:5008"

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: ownership
+  name: ownership
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: ownership
+  template:
+    metadata:
+      labels:
+        io.kompose.service: ownership
+    spec:
+      containers:
+        - image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/audible:ownership
+          name: ownership
+          ports:
+            - containerPort: 5004
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred

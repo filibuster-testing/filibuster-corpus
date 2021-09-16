@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: content-delivery-service
+  name: content-delivery-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: content-delivery-service
+  template:
+    metadata:
+      labels:
+        io.kompose.service: content-delivery-service
+    spec:
+      containers:
+        - image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/audible:content-delivery-service
+          name: content-delivery-service
+          ports:
+            - containerPort: 5002
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred

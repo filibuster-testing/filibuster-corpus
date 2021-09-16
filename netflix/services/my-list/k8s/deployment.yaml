@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: my-list
+  name: my-list
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: my-list
+  template:
+    metadata:
+      labels:
+        io.kompose.service: my-list
+    spec:
+      containers:
+        - image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/netflix:my-list
+          name: my-list
+          ports:
+            - containerPort: 5006
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred

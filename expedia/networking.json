@@ -1,0 +1,26 @@
+{
+  "api-gateway": {
+    "port": 5000,
+    "docker-host": "api-gateway",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 7
+  },
+  "review-ml": {
+    "port": 5001,
+    "docker-host": "review-ml",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 6
+  },
+  "review-time": {
+    "port": 5002,
+    "docker-host": "review-time",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 6
+  },
+  "filibuster": {
+    "port": 5005,
+    "docker-host": "filibuster",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 10
+  }
+}

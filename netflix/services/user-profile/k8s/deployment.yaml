@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: user-profile
+  name: user-profile
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: user-profile
+  template:
+    metadata:
+      labels:
+        io.kompose.service: user-profile
+    spec:
+      containers:
+        - image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/netflix:user-profile
+          name: user-profile
+          ports:
+            - containerPort: 5010
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred

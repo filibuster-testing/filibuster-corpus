@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: audible-download-service
+  name: audible-download-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: audible-download-service
+  template:
+    metadata:
+      labels:
+        io.kompose.service: audible-download-service
+    spec:
+      containers:
+        - image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/audible:audible-download-service
+          name: audible-download-service
+          ports:
+            - containerPort: 5003
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred

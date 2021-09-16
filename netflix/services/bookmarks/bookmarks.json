@@ -1,0 +1,23 @@
+{
+  "chris_rivers": [
+    {
+      "movie": "Harry Potter and the Philosopher's Stone",
+      "timecode": "01:20:00"
+    },
+    {
+      "movie": "Harry Potter and the Chamber of Secrets",
+      "timecode": "00:01:20"
+    }
+  ],
+  "peter_curley": [
+    {
+      "movie": "Iron Man",
+      "timecode": "01:07:30"
+    }],
+  "garret_heaton": [
+    {
+      "movie": "Despicable Me", 
+      "timecode": "01:03:59"
+    }
+  ]
+}

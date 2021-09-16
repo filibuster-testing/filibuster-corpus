@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: movies
+  name: movies
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: movies
+  template:
+    metadata:
+      labels:
+        io.kompose.service: movies
+    spec:
+      containers:
+        - image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/cinema-7:movies
+          name: movies
+          ports:
+            - containerPort: 5001
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred

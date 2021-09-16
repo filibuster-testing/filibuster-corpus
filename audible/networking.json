@@ -1,0 +1,62 @@
+{
+  "audible-app": {
+    "port": 5000,
+    "docker-host": "audible-app",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 17
+  },
+  "content-delivery-engine": {
+    "port": 5001,
+    "docker-host": "content-delivery-engine",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 6
+  },
+  "content-delivery-service": {
+    "port": 5002,
+    "docker-host": "content-delivery-service",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 15
+  },
+  "audible-download-service": {
+    "port": 5003,
+    "docker-host": "audible-download-service",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 10
+  },
+  "ownership": {
+    "port": 5004,
+    "docker-host": "ownership",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 6
+  },
+  "activation": {
+    "port": 5005,
+    "docker-host": "activation",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 6
+  },
+  "stats": {
+    "port": 5006,
+    "docker-host": "stats",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 6
+  },
+  "asset-metadata": {
+    "port": 5007,
+    "docker-host": "asset-metadata",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 6
+  },
+  "audio-assets": {
+    "port": 5008,
+    "docker-host": "audio-assets",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 7
+  },
+  "filibuster": {
+    "port": 5009,
+    "docker-host": "filibuster",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 10
+  }
+}

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: activation
+  name: activation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: activation
+  template:
+    metadata:
+      labels:
+        io.kompose.service: activation
+    spec:
+      containers:
+        - image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/audible:activation
+          name: activation
+          ports:
+            - containerPort: 5005
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred

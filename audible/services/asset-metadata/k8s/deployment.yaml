@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: asset-metadata
+  name: asset-metadata
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: asset-metadata
+  template:
+    metadata:
+      labels:
+        io.kompose.service: asset-metadata
+    spec:
+      containers:
+        - image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/audible:asset-metadata
+          name: asset-metadata
+          ports:
+            - containerPort: 5007
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-recommendations
+spec:
+  type: NodePort
+  ports:
+    - name: "5007"
+      port: 5007
+      targetPort: 5007
+  selector:
+    io.kompose.service: user-recommendations

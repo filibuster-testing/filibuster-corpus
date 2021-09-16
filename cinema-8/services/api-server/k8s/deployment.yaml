@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: api-server
+  name: api-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: api-server
+  template:
+    metadata:
+      labels:
+        io.kompose.service: api-server
+    spec:
+      containers:
+        - image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/cinema-8:api-server
+          name: api-server
+          ports:
+            - containerPort: 5001
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred

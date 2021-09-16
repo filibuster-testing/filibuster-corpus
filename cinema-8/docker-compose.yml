@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+    api-server:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/cinema-8:api-server
+        build: 
+            context: './services/api-server/'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5001:5001"
+    monolith:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/cinema-8:monolith
+        build: 
+            context: './services/monolith'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5002:5002"

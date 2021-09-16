@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+    movies:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/cinema-3:movies
+        build: 
+            context: './services/movies/'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5001:5001"
+    showtimes:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/cinema-3:showtimes
+        build: 
+            context: './services/showtimes'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5002:5002"
+    bookings:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/cinema-3:bookings
+        build: 
+            context: './services/bookings'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5003:5003"
+    users:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/cinema-3:users
+        build: 
+            context: './services/users'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5000:5000"
+

@@ -1,0 +1,17 @@
+{
+  "chris_rivers" : {
+    "id": "chris_rivers",
+    "name": "Chris Rivers",
+    "email": "chris_rivers@netflix.com"
+  },
+  "peter_curley" : {
+    "id": "peter_curley",
+    "name": "Peter Curley",
+    "email": "peter_curley@netflix.com"
+  },
+  "garret_heaton" : {
+    "id": "garret_heaton",
+    "name": "Garret Heaton",
+    "email": "garret_heaton@netflix.com"
+  }
+}

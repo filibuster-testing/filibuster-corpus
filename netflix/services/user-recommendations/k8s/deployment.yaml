@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: user-recommendations
+  name: user-recommendations
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: user-recommendations
+  template:
+    metadata:
+      labels:
+        io.kompose.service: user-recommendations
+    spec:
+      containers:
+        - image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/netflix:user-recommendations
+          name: user-recommendations
+          ports:
+            - containerPort: 5007
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred

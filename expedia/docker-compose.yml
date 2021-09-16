@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+    api-gateway:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/expedia:api-gateway
+        build: 
+            context: './services/api-gateway/'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5000:5000"
+    review-ml:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/expedia:review-ml
+        build: 
+            context: './services/review-ml'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5001:5001"
+    review-time:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/expedia:review-time
+        build: 
+            context: './services/review-time'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5002:5002"
+

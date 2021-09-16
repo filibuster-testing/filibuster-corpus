@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: trending
+  name: trending
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: trending
+  template:
+    metadata:
+      labels:
+        io.kompose.service: trending
+    spec:
+      containers:
+        - image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/netflix:trending
+          name: trending
+          ports:
+            - containerPort: 5005
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred

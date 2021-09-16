@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: review-time
+  name: review-time
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: review-time
+  template:
+    metadata:
+      labels:
+        io.kompose.service: review-time
+    spec:
+      containers:
+        - image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/expedia:review-time
+          name: review-time
+          ports:
+            - containerPort: 5002
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred

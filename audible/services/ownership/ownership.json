@@ -1,0 +1,13 @@
+{
+  "user1": [
+    "book1",
+    "book2"
+  ],
+  "user2": [
+    "book1"
+  ],
+  "user3": [
+    "book2",
+    "book3"
+  ]
+}

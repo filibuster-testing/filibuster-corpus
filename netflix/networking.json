@@ -1,0 +1,68 @@
+{
+  "mobile-client": {
+    "port": 5000,
+    "docker-host": "mobile-client",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 55
+  },
+  "api-gateway": {
+    "port": 5001,
+    "docker-host": "api-gateway",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 55
+  },
+  "bookmarks": {
+    "port": 5003,
+    "docker-host": "bookmarks",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 15
+  },
+  "telemetry": {
+    "port": 5004,
+    "docker-host": "telemetry",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 15
+  },
+  "trending": {
+    "port": 5005,
+    "docker-host": "trending",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 15
+  },
+  "my-list": {
+    "port": 5006,
+    "docker-host": "my-list",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 15
+  },
+  "user-recommendations": {
+    "port": 5007,
+    "docker-host": "user-recommendations",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 15
+  },
+  "global-recommendations": {
+    "port": 5008,
+    "docker-host": "global-recommendations",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 15
+  },
+  "ratings": {
+    "port": 5009,
+    "docker-host": "ratings",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 15
+  },
+  "user-profile": {
+    "port": 5010,
+    "docker-host": "user-profile",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 15
+  },
+  "filibuster": {
+    "port": 5011,
+    "docker-host": "filibuster",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 15
+  }
+}

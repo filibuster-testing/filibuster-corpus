@@ -1,0 +1,31 @@
+{
+  "hotel1": [
+    {
+      "review": "The rooms are quite clean.",
+      "rating": 8,
+      "timestamp": "2019-03-01"
+    },
+    {
+      "review": "Best hotel ever!",
+      "rating": 10,
+      "timestamp": "2018-07-21"
+    },
+    {
+      "review": "Very nice service.",
+      "rating": 9,
+      "timestamp": "2017-05-09"
+    }
+  ],
+  "hotel2": [
+    {
+      "review": "Terrible service!",
+      "rating": 1,
+      "timestamp": "2020-05-20"
+    },
+    {
+      "review": "This hotel is okay.",
+      "rating": 7,
+      "timestamp": "2019-07-11"
+    }
+  ]
+}

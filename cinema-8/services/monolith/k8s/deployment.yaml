@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: monolith
+  name: monolith
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: monolith
+  template:
+    metadata:
+      labels:
+        io.kompose.service: monolith
+    spec:
+      containers:
+        - image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/cinema-8:monolith
+          name: monolith
+          ports:
+            - containerPort: 5002
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred

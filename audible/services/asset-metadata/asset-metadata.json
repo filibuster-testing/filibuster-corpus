@@ -1,0 +1,70 @@
+{
+  "book1": {
+    "title": "Harry Potter and the Philosopher's Stone",
+    "author": "J. K. Rowling",
+    "chapters": [
+      {
+        "id": 1,
+        "title": "The Boy Who Lived",
+        "location": "0:00:00"
+      },
+      {
+        "id": 2,
+        "title": "The Vanishing Glass",
+        "location": "1:00:00"
+      },
+      {
+        "id": 3,
+        "title": "The Letters from No One",
+        "location": "2:00:00"
+      },
+      {
+        "id": 4,
+        "title": "The Keeper of Keys",
+        "location": "3:00:00"
+      }
+    ]
+  },
+  "book2": {
+    "title": "Harry Potter and the Chamber of Secrets",
+    "author": "J. K. Rowling",
+    "chapters": [
+      {
+        "id": 1,
+        "title": "The Worst Birthday",
+        "location": "0:00:00"
+      },
+      {
+        "id": 2,
+        "title": "Dobby's Warning",
+        "location": "1:00:00"
+      },
+      {
+        "id": 3,
+        "title": "The Burrow",
+        "location": "2:00:00"
+      }
+    ]
+  },
+  "book3": {
+    "title": "Harry Potter and the Prisoner of Azkaban",
+    "author": "J. K. Rowling",
+    "chapters": [
+      {
+        "id": 1,
+        "title": "Owl Post",
+        "location": "0:00:00"
+      },
+      {
+        "id": 2,
+        "title": "Aunt Marge’s Big Mistake",
+        "location": "1:00:00"
+      },
+      {
+        "id": 3,
+        "title": "The Knight Bus",
+        "location": "2:00:00"
+      }
+    ]
+  }
+}

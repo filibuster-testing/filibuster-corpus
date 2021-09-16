@@ -1,0 +1,74 @@
+version: '3'
+
+services:
+    mobile-client:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/netflix:mobile-client
+        build: 
+            context: './services/mobile-client'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5000:5000"
+    api-gateway:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/netflix:api-gateway
+        build: 
+            context: './services/api-gateway'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5001:5001"
+    bookmarks:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/netflix:bookmarks
+        build: 
+            context: './services/bookmarks'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5003:5003"
+    telemetry:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/netflix:telemetry
+        build: 
+            context: './services/telemetry'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5004:5004"
+    trending:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/netflix:trending
+        build: 
+            context: './services/trending'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5005:5005"
+    my-list:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/netflix:my-list
+        build: 
+            context: './services/my-list'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5006:5006"
+    user-recommendations:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/netflix:user-recommendations
+        build: 
+            context: './services/user-recommendations'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5007:5007"
+    global-recommendations:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/netflix:global-recommendations
+        build: 
+            context: './services/global-recommendations'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5008:5008"
+    ratings:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/netflix:ratings
+        build: 
+            context: './services/ratings'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5009:5009"
+    user-profile:
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/netflix:user-profile
+        build: 
+            context: './services/user-profile'
+            dockerfile: './Dockerfile'
+        ports:
+            - "5010:5010"
+

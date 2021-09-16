@@ -1,0 +1,14 @@
+{
+  "book1": {
+    "license": "license1",
+    "audio": "./book1.m4a"
+  },
+  "book2": {
+    "license": "license2",
+    "audio": "./book2"
+  },
+  "book3": {
+    "license": "license3",
+    "audio": "./book1.m4a"
+  }
+}

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: review-ml
+  name: review-ml
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: review-ml
+  template:
+    metadata:
+      labels:
+        io.kompose.service: review-ml
+    spec:
+      containers:
+        - image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/expedia:review-ml
+          name: review-ml
+          ports:
+            - containerPort: 5001
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred

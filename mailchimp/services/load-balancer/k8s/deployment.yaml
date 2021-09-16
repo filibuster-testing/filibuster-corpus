@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: load-balancer
+  name: load-balancer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: load-balancer
+  template:
+    metadata:
+      labels:
+        io.kompose.service: load-balancer
+    spec:
+      containers:
+        - image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/mailchimp:load-balancer
+          name: load-balancer
+          ports:
+            - containerPort: 5000
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred

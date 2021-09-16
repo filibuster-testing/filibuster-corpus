@@ -1,0 +1,36 @@
+{
+  "chris_rivers": [
+    {
+      "movie": "Harry Potter and the Philosopher's Stone",
+      "rating": 5
+    },
+    {
+      "movie": "Twilight",
+      "rating": 4
+    }
+  ],
+  "peter_curley": [
+    {
+      "movie": "The Incredible Hulk",
+      "rating": 3
+    },
+    {
+      "movie": "Captain America: The First Avenger",
+      "rating": 4
+    }
+  ],
+  "garret_heaton" : [
+    {
+      "movie": "The Incredibles",
+      "rating": 2
+    },
+    {
+      "movie": "Monsters Inc.",
+      "rating": 1
+    },
+    {
+      "movie": "Brave",
+      "rating": 4
+    }
+  ]
+}

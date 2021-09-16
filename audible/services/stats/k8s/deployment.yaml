@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: stats
+  name: stats
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: stats
+  template:
+    metadata:
+      labels:
+        io.kompose.service: stats
+    spec:
+      containers:
+        - image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/audible:stats
+          name: stats
+          ports:
+            - containerPort: 5006
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred

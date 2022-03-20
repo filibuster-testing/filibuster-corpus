@@ -59,6 +59,9 @@ class Helper:
     def get_grpc_port(self, service_name):
         return self.networking[service_name]['grpc-port']
 
+    def get_redis_port(self, service_name):
+        return self.networking[service_name]['redis-port']
+
     def get_timeout(self, service_name):
         if (service_name == 'jaeger'):
             return 5

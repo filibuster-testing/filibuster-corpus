@@ -1,0 +1,33 @@
+{
+  "movies": {
+    "port": 5001,
+    "docker-host": "movies",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 10,
+    "redis-port" : 6379
+  },
+  "showtimes": {
+    "port": 5002,
+    "docker-host": "showtimes",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 10
+  },
+  "bookings": {
+    "port": 5003,
+    "docker-host": "bookings",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 10
+  },
+  "users": {
+    "port": 5000,
+    "docker-host": "users",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 10
+  },
+  "filibuster": {
+    "port": 5005,
+    "docker-host": "filibuster",
+    "default-host": "0.0.0.0",
+    "timeout-seconds": 10
+  }
+}

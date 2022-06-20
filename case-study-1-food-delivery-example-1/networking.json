@@ -1,0 +1,18 @@
+{
+    "orders" : {
+      "port": 5000,
+      "default-host": "0.0.0.0",
+      "timeout-seconds": 6
+    },
+    "auth" : {
+      "port": 5001,
+      "default-host": "0.0.0.0",
+      "timeout-seconds": 6
+    },
+
+    "filibuster": {
+      "port": 5005,
+      "default-host": "0.0.0.0",
+      "timeout-seconds": 10
+    }
+}

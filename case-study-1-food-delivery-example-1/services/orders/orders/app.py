@@ -1,5 +1,5 @@
 from http.client import responses
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from werkzeug.exceptions import ServiceUnavailable
 import requests
 import os
@@ -15,7 +15,6 @@ helper = helper.Helper("case-study-1-food-delivery-example-1")
 app = Flask(__name__)
 
 ## Instrument using filibuster
-
 sys.path.append(os.path.dirname(examples_path))
 
 from filibuster.instrumentation.requests import RequestsInstrumentor as FilibusterRequestsInstrumentor
@@ -33,56 +32,50 @@ def foo_health_check():
     return jsonify({ "status": "OK" })
 
 
-@app.route("/orders/create", methods=['GET'])
-def create():
+@app.route("/orders", methods=['POST'])
+def create_order():
 
-    #declare a random order (in practice, these details would be passed into the function)
-    auth_type = "create"
-    order_details = {"id" : 1234, "amount" : 9.99}
+    #get the order amount from the request and assign the order id
+    data = request.json      
+    order_amount = data['order_amount']  
+    order_details = {"order_id": 1234, "order_amount": order_amount}
 
-    return get_auth(auth_type, order_details) 
+    # request authorization from the Auth service
+    return rpc_auth("POST", order_details)
+
+@app.route("/orders/<int:order_id>", methods=['PUT'])
+def update_order(order_id):
+
+    data = request.json      
+    order_amount = data['order_amount']  
+    order_details = {"order_id": order_id, "order_amount": order_amount}
 
 
-@app.route("/orders/update", methods=['GET'])
-def update():
-
-    #declare a random order (in practice, these details would be passed into the function)
-    auth_type = "update"
-    order_details = {"id" : 1234, "amount" : 11.99}
-
-    return get_auth(auth_type, order_details)
+    return rpc_auth("PUT", order_details)
 
 
-@app.route("/orders/delete", methods=['GET'])
-def delete():
+@app.route("/orders/<int:order_id>", methods=['DELETE'])
+def delete_order(order_id):
+ 
+    data = request.json      
+    order_amount = data['order_amount']  
+    order_details = {"order_id": order_id, "order_amount": order_amount}
 
-    #declare a random order (in practice, these details would be passed into the function)
-    auth_type = "delete"
-    order_details = {"id" : 1234, "amount" : 11.99}
+    return rpc_auth("PUT", order_details)
 
-    return get_auth(auth_type, order_details)    
-   
+# This method communicates with the Auth service. It handles all authorization requests from the create, update, and delete methods
+def rpc_auth(verb, order_details):  
 
-# This method communicates with the auth method in the auth app. It handles all authorization requests
-# from the create, update, and delete methods
-def get_auth(auth_type, order_details):  
-
-    #get the order data from whichever method requests authorization 
-    order_data = json.dumps({"auth_type": auth_type, "order_details": order_details})
-    
-    #send the data in a POST request to the authorization service
     try:
-        response = requests.post("{}/auth".format(helper.get_service_url('auth')), timeout=helper.get_timeout('auth'), data=order_data)
+        response = requests.request(verb,"{}/auth".format(helper.get_service_url('auth')), timeout=helper.get_timeout('auth'), json={"order_details": order_details})
     except requests.exceptions.Timeout:
         raise ServiceUnavailable("The authorization service timed out.")
+    
+    if response.status_code != 200 and response.status_code != 201: 
+        raise ServiceUnavailable("The authorization service is malfunctioning.")
 
+    return jsonify(response.json()), response.status_code
 
-    if response.status_code != 200: 
-        raise ServiceUnavailable("The authorization service is malfunctioning.")    
-       
-
-    #return the auth service's response in string format    
-    return response.text
 
 
 if __name__ == "__main__":

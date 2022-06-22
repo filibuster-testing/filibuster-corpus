@@ -27,23 +27,23 @@ FilibusterFlaskInstrumentor().instrument_app(app, service_name="auth", filibuste
 def baz_health_check():
     return jsonify({ "status": "OK" })
 
-# This method grants authorization to create, update, or delete orders
+# This method grants authorization to delete an order
+@app.route("/auth", methods=['DELETE'])
+def auth_delete():
+
+    return jsonify(request.json), 200
+
+# This method grants authorization to update an order
+@app.route("/auth", methods=['PUT'])
+def auth_put():
+ 
+    return jsonify(request.json), 200
+
+# This method grants authorization to create an order
 @app.route("/auth", methods=['POST'])
-def authorize():
-    
-    # get authorization type and order data
-    data = json.loads(request.data)       
-    auth_type = str(data["auth_type"])    
-    order_details = data['order_details']   
+def auth_post():
 
-    # here a bug is introduced in the logic that checks if an order is create, update, or delete
-    # the bugs causes all 'delete' authorizations to be refused, with status 424     
-    if auth_type == "create" or auth_type == "update" or auth_type == "delet":
-        return jsonify({"status": 200, "authorized": True, "auth_type": auth_type, "order_details": order_details})
-
-    #since "delete" is misspelled above, all "delete" authorization will be refused
-    else:        
-        return jsonify({"status": 424, "authorized": False, "auth_type": auth_type, "order_details": order_details})            
+    return jsonify(request.json), 201                 
 
 
 if __name__ == "__main__":

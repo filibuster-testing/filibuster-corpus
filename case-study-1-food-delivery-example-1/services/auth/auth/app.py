@@ -3,7 +3,6 @@ from werkzeug.exceptions import ServiceUnavailable
 import os
 import sys
 
-
 examples_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))))
 sys.path.append(examples_path)
 
@@ -30,19 +29,16 @@ def baz_health_check():
 # This method grants authorization to delete an order
 @app.route("/auth", methods=['DELETE'])
 def auth_delete():
-
     return jsonify(request.json), 200
 
 # This method grants authorization to update an order
 @app.route("/auth", methods=['PUT'])
-def auth_put():
- 
+def auth_put(): 
     return jsonify(request.json), 200
 
 # This method grants authorization to create an order
 @app.route("/auth", methods=['POST'])
 def auth_post():
-
     return jsonify(request.json), 201                 
 
 

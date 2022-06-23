@@ -12,12 +12,11 @@ import helper
 helper = helper.Helper("case-study-1-food-delivery-example-1")
 
 # Note that tests should be prefixed with test_functional for filibuster compatibility
-def test_create_orders():
-     
-    response = requests.post("{}/orders".format(helper.get_service_url('orders')), timeout=helper.get_timeout('orders'), json={"order_amount": 11.89})
-    assert response.status_code == 201
-
+def test_create_orders():     
+    order_amount = 11.89
+    response = requests.post("{}/orders".format(helper.get_service_url('orders')), timeout=helper.get_timeout('orders'), json={"order_amount": order_amount})
+    #data = response.json()          
+    assert response.status_code == 201 and response.json()['order_details']['order_amount'] == order_amount    
 
 if __name__ == "__main__":
-
     test_create_orders()

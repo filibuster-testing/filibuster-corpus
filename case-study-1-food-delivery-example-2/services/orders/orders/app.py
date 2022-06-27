@@ -11,7 +11,7 @@ examples_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
 sys.path.append(examples_path)
 
 import helper
-helper = helper.Helper("case-study-1-food-delivery-example-1")
+helper = helper.Helper("case-study-1-food-delivery-example-2")
 
 app = Flask(__name__)
 
@@ -38,7 +38,7 @@ def create_order():
     order_amount = data['order_amount']     
     order_counter += 1    
     
-    return rpc_auth("POST", {"order_id": order_counter, "order_amount": order_amount})
+    return rpc_auth_create("POST", {"order_id": order_counter, "order_amount": order_amount})
 
 
 @app.route("/orders/<int:order_id>", methods=['PUT'])
@@ -47,7 +47,7 @@ def update_order(order_id):
     order_amount = data['order_amount']  
     order_details = {"order_id": order_id, "order_amount": order_amount}
 
-    return rpc_auth("PUT", order_details)
+    return rpc_auth_update("PUT", order_details)
 
 
 @app.route("/orders/<int:order_id>", methods=['DELETE'])
@@ -56,12 +56,13 @@ def delete_order(order_id):
     order_amount = data['order_amount']  
     order_details = {"order_id": order_id, "order_amount": order_amount}
 
-    return rpc_auth("DELETE", order_details)
+    return rpc_auth_delete("DELETE", order_details)
 
 
-# This method communicates with the Auth service. It handles all authorization requests from the create, update, and delete methods
+# This method communicates with the Auth service to approve authorization requests from the create method
 @circuit
-def rpc_auth(verb, order_details):  
+def rpc_auth_create(verb, order_details):
+
     try:
         response = requests.request(verb,"{}/auth".format(helper.get_service_url('auth')), timeout=helper.get_timeout('auth'), json={"order_details": order_details})
     except requests.exceptions.Timeout:
@@ -69,7 +70,42 @@ def rpc_auth(verb, order_details):
     except requests.exceptions.ConnectionError:
         raise ServiceUnavailable("Unable to connect to the authorization service.") 
            
-    if response.status_code != 200 and response.status_code != 201: 
+    if response.status_code != 201: 
+        raise ServiceUnavailable("The authorization service is malfunctioning.")
+
+    return jsonify(response.json()), response.status_code
+
+
+
+# This method communicates with the Auth service to approve authorization requests from the update method
+@circuit
+def rpc_auth_update(verb, order_details):  
+
+    try:
+        response = requests.request(verb,"{}/auth".format(helper.get_service_url('auth')), timeout=helper.get_timeout('auth'), json={"order_details": order_details})
+    except requests.exceptions.Timeout:
+        raise ServiceUnavailable("The authorization service timed out.")
+    except requests.exceptions.ConnectionError:
+        raise ServiceUnavailable("Unable to connect to the authorization service.") 
+           
+    if response.status_code != 200: 
+        raise ServiceUnavailable("The authorization service is malfunctioning.")
+
+    return jsonify(response.json()), response.status_code
+
+
+# This method communicates with the Auth service to approve authorization requests from the delete method
+@circuit
+def rpc_auth_delete(verb, order_details): 
+
+    try:
+        response = requests.request(verb,"{}/auth".format(helper.get_service_url('auth')), timeout=helper.get_timeout('auth'), json={"order_details": order_details})
+    except requests.exceptions.Timeout:
+        raise ServiceUnavailable("The authorization service timed out.")
+    except requests.exceptions.ConnectionError:
+        raise ServiceUnavailable("Unable to connect to the authorization service.") 
+           
+    if response.status_code != 200: 
         raise ServiceUnavailable("The authorization service is malfunctioning.")
 
     return jsonify(response.json()), response.status_code

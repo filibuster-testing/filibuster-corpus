@@ -7,7 +7,7 @@ examples_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
 sys.path.append(examples_path)
 
 import helper
-helper = helper.Helper("case-study-1-food-delivery-example-1")
+helper = helper.Helper("case-study-1-food-delivery-example-2")
 
 app = Flask(__name__)
 

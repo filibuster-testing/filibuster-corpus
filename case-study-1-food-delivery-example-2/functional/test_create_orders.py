@@ -9,7 +9,7 @@ examples_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath
 sys.path.append(examples_path)
 
 import helper
-helper = helper.Helper("case-study-1-food-delivery-example-1")
+helper = helper.Helper("case-study-1-food-delivery-example-2")
 
 # Note that tests should be prefixed with test_functional for filibuster compatibility
 def test_create_orders():     

@@ -94,7 +94,7 @@ def rpc_auth(verb, order_details):
     if response.status_code != 200 and response.status_code != 201:
         raise ServiceUnavailable("The authorization service is malfunctioning.")
 
-    return jsonify(response.json()), response.status_code     
+    return jsonify(response.json()), response.status_code
 
 
 if __name__ == "__main__":

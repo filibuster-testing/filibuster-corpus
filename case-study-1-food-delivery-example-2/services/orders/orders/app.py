@@ -114,6 +114,5 @@ def rpc_auth(verb, order_details):
     return jsonify(response.json()), response.status_code
 
 
-
 if __name__ == "__main__":
     app.run(port=helper.get_port("orders"), host="0.0.0.0", debug=helper.get_debug())

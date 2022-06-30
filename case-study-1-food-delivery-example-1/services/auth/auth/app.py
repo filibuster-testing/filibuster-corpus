@@ -45,8 +45,8 @@ def auth_health_check():
 # This method grants authorization to delete an order
 @app.route("/auth", methods=["DELETE"])
 def auth_delete():
-    if os.environ.get('DELETE_FAULT', ''):
-        return jsonify(request.json), 500        
+    if os.environ.get("DELETE_FAULT", ""):
+        return jsonify(request.json), 500
     else:
         return jsonify(request.json), 200
 

@@ -43,12 +43,12 @@ def auth_health_check():
 
 
 # This method grants authorization to delete an order
-# If the 'DELETE_FAULTS' enivornment variable is set at runtime, it will 
-# refuse authorization for all delete orders. 
+# If the 'DELETE_FAULTS' enivornment variable is set at runtime, it will
+# refuse authorization for all delete orders.
 @app.route("/auth", methods=["DELETE"])
 def auth_delete():
-    if os.environ.get('DELETE_FAULT', ''):
-        return jsonify(request.json), 500        
+    if os.environ.get("DELETE_FAULT", ""):
+        return jsonify(request.json), 500
     else:
         return jsonify(request.json), 200
 

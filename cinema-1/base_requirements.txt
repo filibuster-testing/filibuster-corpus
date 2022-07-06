@@ -9,4 +9,3 @@ opentelemetry-instrumentation-flask==0.18b1
 opentelemetry-instrumentation-requests==0.18b1
 docker
 kubernetes
-filibuster-python

@@ -1,6 +1,6 @@
 .PHONY: reqs unit functional
 
-example = case-study-1-food-delivery-example-2 
+example = case-study-1-food-delivery-example-2
 services = orders auth
 ports = 5000 5001
 filibuster-port = 5005

@@ -29,7 +29,7 @@ RUN cd /tmp && \
 
 RUN pip3 install -r base_requirements.txt
 
-# ENV RUNNING_IN_DOCKER=1 
-# ENV DISABLE_INSTRUMENTATION=${disable_instrumentation}
-# ENV DISABLE_SERVER_COMMUNICATION=${disable_server_communication}
-# ENV RUN_COUNTEREXAMPLE=${run_counterexample}
+ENV RUNNING_IN_DOCKER=1 
+ENV DISABLE_INSTRUMENTATION=${disable_instrumentation}
+ENV DISABLE_SERVER_COMMUNICATION=${disable_server_communication}
+ENV RUN_COUNTEREXAMPLE=${run_counterexample}

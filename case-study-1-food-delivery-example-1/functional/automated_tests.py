@@ -16,31 +16,28 @@ helper = helper.Helper("case-study-1-food-delivery-example-1")
 
 
 def test_create_orders():
-    order_amount = 11.89
     response = requests.post(
         "{}/orders".format(helper.get_service_url("orders")),
         timeout=helper.get_timeout("orders"),
-        json={"order_amount": order_amount},
-    )
-    return response
-
-
-def test_delete_orders():
-    order_amount = 15.89
-    response = requests.delete(
-        "{}/orders/10".format(helper.get_service_url("orders")),
-        timeout=helper.get_timeout("orders"),
-        json={"order_id": 10, "order_amount": order_amount},
+        json={"order_amount": 11.89},
     )
     return response
 
 
 def test_update_orders():
-    order_amount = 15.89
     response = requests.put(
-        "{}/orders/10".format(helper.get_service_url("orders")),
+        "{}/orders".format(helper.get_service_url("orders")),
         timeout=helper.get_timeout("orders"),
-        json={"order_id": 10, "order_amount": order_amount},
+        json={"order_id": 10, "order_amount": 15.89},
+    )
+    return response
+
+
+def test_delete_orders():
+    response = requests.delete(
+        "{}/orders".format(helper.get_service_url("orders")),
+        timeout=helper.get_timeout("orders"),
+        json={"order_id": 10, "order_amount": 15.89},
     )
     return response
 

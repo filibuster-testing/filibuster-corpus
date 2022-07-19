@@ -52,26 +52,25 @@ order_counter = 0
 def create_order():
     global order_counter
     data = request.json
-    order_amount = data["order_amount"]
     order_counter += 1
 
-    return rpc_auth("POST", {"order_id": order_counter, "order_amount": order_amount})
+    return rpc_auth(
+        "POST", {"order_id": order_counter, "order_amount": data["order_amount"]}
+    )
 
 
-@app.route("/orders/<int:order_id>", methods=["PUT"])
-def update_order(order_id):
+@app.route("/orders", methods=["PUT"])
+def update_order():
     data = request.json
-    order_amount = data["order_amount"]
-    order_details = {"order_id": order_id, "order_amount": order_amount}
+    order_details = {"order_id": data["order_id"], "order_amount": data["order_amount"]}
 
     return rpc_auth("PUT", order_details)
 
 
-@app.route("/orders/<int:order_id>", methods=["DELETE"])
-def delete_order(order_id):
+@app.route("/orders", methods=["DELETE"])
+def delete_order():
     data = request.json
-    order_amount = data["order_amount"]
-    order_details = {"order_id": order_id, "order_amount": order_amount}
+    order_details = {"order_id": data["order_id"], "order_amount": data["order_amount"]}
 
     return rpc_auth("DELETE", order_details)
 

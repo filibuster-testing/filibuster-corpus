@@ -2,14 +2,15 @@ version: '3'
 
 services:
     orders:
-        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/filibuster-corpus/case-study-2-food-delivery-example-c:orders
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/case-study-2-food-delivery-example-c:orders
         build: 
             context: './services/orders/'
             dockerfile: './Dockerfile'
         ports:
             - "5000:5000"
     auth:
-        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/filibuster-corpus/case-study-2-food-delivery-example-c:auth
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/
+        case-study-2-food-delivery-example-c:auth
         build: 
             context: './services/auth'
             dockerfile: './Dockerfile'

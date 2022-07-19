@@ -2,21 +2,21 @@ version: '3'
 
 services:
     orders:
-        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/filibuster-corpus/case-study-2-food-delivery-example-d:orders
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/case-study-2-food-delivery-example-d:orders
         build: 
             context: './services/orders/'
             dockerfile: './Dockerfile'
         ports:
             - "5000:5000"
     delivery_auth:
-        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/filibuster-corpus/case-study-2-food-delivery-example-d:delivery_auth
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/case-study-2-food-delivery-example-d:delivery_auth
         build: 
             context: './services/delivery_auth/'
             dockerfile: './Dockerfile'
         ports:
             - "5001:5001"
     takeout_auth:
-        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/filibuster-corpus/case-study-2-food-delivery-example-d:takeout_auth
+        image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/case-study-2-food-delivery-example-d:takeout_auth
         build: 
             context: './services/takeout_auth/'
             dockerfile: './Dockerfile'

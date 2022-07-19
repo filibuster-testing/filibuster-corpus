@@ -1,4 +1,4 @@
-FROM filibuster-corpus/case-study-2-food-delivery-example-e:configuration
+FROM case-study-2-food-delivery-example-e:configuration
 
 WORKDIR /application/examples/filibuster-corpus/case-study-2-food-delivery-example-e/services/auth
 

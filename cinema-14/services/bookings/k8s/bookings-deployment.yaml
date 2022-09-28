@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: bookings
+  name: bookings
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: bookings
+  template:
+    metadata:
+      labels:
+        io.kompose.service: bookings
+    spec:
+      containers:
+        - image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/cinema-14:bookings
+          name: bookings
+          ports:
+            - containerPort: 5003
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred

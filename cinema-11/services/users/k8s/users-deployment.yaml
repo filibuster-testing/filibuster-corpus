@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: users
+  name: users
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: users
+  template:
+    metadata:
+      labels:
+        io.kompose.service: users
+    spec:
+      containers:
+        - image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/cinema-11:users
+          name: users
+          ports:
+            - containerPort: 5000
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred

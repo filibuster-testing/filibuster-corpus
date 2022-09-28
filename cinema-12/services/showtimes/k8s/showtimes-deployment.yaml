@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: showtimes
+  name: showtimes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: showtimes
+  template:
+    metadata:
+      labels:
+        io.kompose.service: showtimes
+    spec:
+      containers:
+        - image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/cinema-12:showtimes
+          name: showtimes
+          ports:
+            - containerPort: 5002
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred
